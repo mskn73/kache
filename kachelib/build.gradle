@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply from: '../config/checkstyle/check.gradle'
 
 android {
     compileSdkVersion 25
@@ -33,4 +34,8 @@ dependencies {
 }
 repositories {
     mavenCentral()
+}
+
+checkstyle {
+    configFile file("${project.rootDir}/config/checkstyle/checkstyle.xml")
 }
