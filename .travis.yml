@@ -10,6 +10,4 @@ android:
     - android-25
     - extra-android-m2repository
     - extra-google-m2repository
-
-script:
-   - ./gradlew build connectedCheck
+    
