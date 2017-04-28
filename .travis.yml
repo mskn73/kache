@@ -9,9 +9,6 @@ language: android
       # SDK Version to compile project
       - android-25
       - android-17
-    licenses:
-      - android-sdk-license-.+
-      - '.+'
   
   jdk: oraclejdk8
 
