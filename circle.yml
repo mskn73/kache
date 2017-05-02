@@ -1,0 +1,36 @@
+#
+# Build configuration for Circle CI
+#
+# Runs tests and static code analysis. After that, collects the reports and artifacts
+#
+
+general:
+    artifacts:
+        - /home/ubuntu/kache/app/build/outputs/apk/
+        - /home/ubuntu/kache/app/build/outputs/lint-results-debug.html
+        - /home/ubuntu/kache/app/build/outputs/lint-results-debug_files/
+        - /home/ubuntu/kache/app/build/outputs/lint-results-release-fatal.html
+        - /home/ubuntu/kache/app/build/outputs/lint-results-release-fatal_files/
+        - /home/ubuntu/kache/app/build/reports/
+        - /home/ubuntu/kache/kachelib/build/reports/
+
+machine:
+    environment:
+        GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:MaxPermSize=2048m -Xms512m -XX:+HeapDumpOnOutOfMemoryError"'
+        ANDROID_HOME: /usr/local/android-sdk-linux
+
+dependencies:
+    pre:
+        - ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --all --filter "tools,android-25,build-tools-25.0.2,platform-tools,extra-google-m2repository,extra-android-m2repository,extra-android-support,extra-google-google_play_services"
+    override:
+        - ANDROID_HOME=/usr/local/android-sdk-linux ./gradlew dependencies
+
+test:
+    override:
+        - (./gradlew check test -PdisablePreDex):
+            timeout: 360
+        # copy the lib outputs to tests
+        - cp -r /home/ubuntu/kache/kachelib/build/test-results/ $CIRCLE_TEST_REPORTS/junit/
+        # copy the app outputs to tests
+        - cp -r /home/ubuntu/kache/app/build/test-results/debug/ $CIRCLE_TEST_REPORTS/junit/
+        - cp -r /home/ubuntu/kache/app/build/test-results/release/ $CIRCLE_TEST_REPORTS/junit/
