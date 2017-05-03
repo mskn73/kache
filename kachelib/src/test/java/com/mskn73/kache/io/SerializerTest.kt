@@ -1,4 +1,4 @@
-package com.mskn73.kache
+package com.mskn73.kache.io
 
 import org.amshove.kluent.shouldEqual
 import org.junit.Test
