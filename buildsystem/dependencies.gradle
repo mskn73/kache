@@ -1,0 +1,50 @@
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+ext {
+    //Android
+    androidBuildToolsVersion = "23.0.3"
+    androidMinSdkVersion = 16
+    androidTargetSdkVersion = 23
+    androidCompileSdkVersion = 23
+
+    //Libraries
+    daggerVersion = '2.7'
+    javaxAnnotationVersion = '1.0'
+    butterKnifeVersion = '8.4.0'
+    rxAndroidVersion = '1.2.1'
+    rxJavaVersion = '1.1.6'
+    rxBindingVersion = '0.4.0'
+    supportVersion = '24.2.1'
+    retrofitVersion = '2.1.0'
+    okHttpVersion = '3.4.1'
+    realmVersion = '0.87.2'
+    circleImageViewVersion = '2.1.0'
+    picassoVersion = '2.5.2'
+    cardViewVersion = '24.2.0'
+    supportAnnotationsVersion = '21.0.3'
+    guavaVersion = '18.0'
+    paletteVersion = '24.2.1'
+    glideVersion = '3.7.0'
+
+    //Testing
+    robolectricVersion = '3.1.2'
+    junitVersion = '4.12'
+    mockitoVersion = '1.10.19'
+    powerMockito = '1.6.2'
+    hamcrestVersion = '1.3'
+    runnerVersion = '0.5'
+
+
+
+
+    kachelibTestDependencies = [
+            junit      : "junit:junit:${junitVersion}",
+            hamcrest   : "org.hamcrest:hamcrest-all:${hamcrestVersion}",
+            mockito    : "org.mockito:mockito-core:${mockitoVersion}",
+            robolectric: "org.robolectric:robolectric:${robolectricVersion}",
+    ]
+}
