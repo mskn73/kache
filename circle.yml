@@ -32,5 +32,5 @@ test:
         # copy the lib outputs to tests
         - cp -r /home/ubuntu/kache/kachelib/build/test-results/ $CIRCLE_TEST_REPORTS/junit/
         # copy the app outputs to tests
-        - cp -r /home/ubuntu/kache/app/build/test-results/debug/ $CIRCLE_TEST_REPORTS/junit/
-        - cp -r /home/ubuntu/kache/app/build/test-results/release/ $CIRCLE_TEST_REPORTS/junit/
+        # - cp -r /home/ubuntu/kache/app/build/test-results/debug/ $CIRCLE_TEST_REPORTS/junit/
+        # - cp -r /home/ubuntu/kache/app/build/test-results/release/ $CIRCLE_TEST_REPORTS/junit/
