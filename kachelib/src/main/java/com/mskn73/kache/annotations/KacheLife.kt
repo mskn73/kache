@@ -1,4 +1,4 @@
-package com.mskn73.kache.annons
+package com.mskn73.kache.annotations
 
 import java.lang.annotation.Retention
 import java.lang.annotation.RetentionPolicy

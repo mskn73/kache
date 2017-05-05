@@ -1,17 +1,21 @@
 package com.mskn73.kache.io
 
+import com.mskn73.kache.AndroidTest
 import org.amshove.kluent.shouldEqualTo
+import org.junit.After
+import org.junit.Test
+import java.io.File
 
-class FileManagerTest : com.mskn73.kache.AndroidTest() {
+class FileManagerTest : AndroidTest() {
 
   private var fileManager = com.mskn73.kache.io.FileManager()
 
-  @org.junit.After
+  @After
   fun tearDown() {
     fileManager.clearDirectory(cacheDir())
   }
 
-  @org.junit.Test
+  @Test
   fun shouldWriteToFile() {
     val fileToWrite = createDummyFile()
     val fileContent = "content"
@@ -21,7 +25,7 @@ class FileManagerTest : com.mskn73.kache.AndroidTest() {
     fileToWrite.exists() shouldEqualTo true
   }
 
-  @org.junit.Test
+  @Test
   fun shouldHaveCorrectFileContent() {
     val fileToWrite = createDummyFile()
     val fileContent = "content\n"
@@ -32,7 +36,7 @@ class FileManagerTest : com.mskn73.kache.AndroidTest() {
     expectedContent shouldEqualTo fileContent
   }
 
-  private fun createDummyFile(): java.io.File {
+  private fun createDummyFile(): File {
     val dummyFilePath = cacheDir().path + java.io.File.separator + "dummyFile"
     return java.io.File(dummyFilePath)
   }
