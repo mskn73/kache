@@ -28,7 +28,7 @@ class Kache(val context: Context, val cacheDir: String) {
     setLastCacheUpdate(myKacheable.key)
   }
 
-  operator fun get(clazz: Class<*>, key: String): Any? {
+  fun get(clazz: Class<*>, key: String): Any? {
     val file = buildFileForKey(key)
     val fileContent = fileManager.readFileContent(file)
     val obj = serializer.deserialize(fileContent, clazz)
