@@ -1,5 +1,6 @@
-package com.mskn73.kache
+package com.mskn73.kache.io
 
+import com.mskn73.kache.AndroidTest
 import org.amshove.kluent.shouldEqualTo
 import org.junit.After
 import org.junit.Test
@@ -7,7 +8,7 @@ import java.io.File
 
 class FileManagerTest : AndroidTest() {
 
-  private var fileManager = FileManager()
+  private var fileManager = com.mskn73.kache.io.FileManager()
 
   @After
   fun tearDown() {
@@ -36,8 +37,8 @@ class FileManagerTest : AndroidTest() {
   }
 
   private fun createDummyFile(): File {
-    val dummyFilePath = cacheDir().path + File.separator + "dummyFile"
-    return File(dummyFilePath)
+    val dummyFilePath = cacheDir().path + java.io.File.separator + "dummyFile"
+    return java.io.File(dummyFilePath)
   }
 }
 
