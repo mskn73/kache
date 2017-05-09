@@ -1,6 +1,7 @@
 package com.mskn73.kache
 
 import android.content.Context
+import com.mskn73.kache.annotations.KacheableProcessor
 import com.mskn73.kache.io.FileManager
 import com.mskn73.kache.io.Serializer
 import kotlinx.coroutines.experimental.CommonPool
@@ -19,6 +20,7 @@ class Kache(val context: Context, val cacheDir: String) {
 
   val fileManager: FileManager = FileManager()
   val serializer: Serializer = Serializer()
+  val kacheableProcessor = KacheableProcessor()
 
 
   fun put(myKacheable: Kacheable) {
@@ -35,8 +37,33 @@ class Kache(val context: Context, val cacheDir: String) {
     return obj
   }
 
+  fun isCached(key: String) = buildFileForKey(key).exists()
+
+  fun isExpired(key: String, myKacheable: Kacheable): Boolean {
+    val currentTime = System.currentTimeMillis()
+    val lastUpdateTime = getLastCacheUpdate(key)
+    val expirationTime = kacheableProcessor.getExpiresTime(myKacheable.javaClass)
+
+    val expired = currentTime - lastUpdateTime > expirationTime
+
+    if (expired) {
+      evict(key)
+    }
+
+    return expired
+  }
+
+  fun evict(key: String) {
+
+  }
+
   private fun setLastCacheUpdate(key: String) {
     fileManager.writeToPreferences(context, SETTINGS_FILE_NAME, key, System.currentTimeMillis())
+  }
+
+  private fun getLastCacheUpdate(key: String): Long {
+    return fileManager.getFromPreferences(this.context, SETTINGS_FILE_NAME,
+        key)
   }
 
   private fun buildFileForKey(key: String): File {
