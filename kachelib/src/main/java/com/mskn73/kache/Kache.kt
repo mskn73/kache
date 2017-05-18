@@ -37,7 +37,7 @@ class Kache(val context: Context, val cacheDir: String) {
     return obj
   }
 
-  fun isCached(key: String) = buildFileForKey(key).exists()
+  fun isCached(key: String) = fileManager.exists(buildFileForKey(key))
 
   fun isExpired(key: String, myKacheable: Kacheable): Boolean {
     val currentTime = System.currentTimeMillis()
