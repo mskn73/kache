@@ -62,6 +62,12 @@ class FileManager internal constructor() {
     return result
   }
 
+  internal fun delete(file: File): Boolean {
+    file.delete()
+    val result = exists(file)
+    return result
+  }
+
   internal fun writeToPreferences(context: Context, preferenceFileName: String, key: String,
       value: Long) {
 

@@ -54,7 +54,7 @@ class Kache(val context: Context, val cacheDir: String) {
   }
 
   fun evict(key: String) {
-
+    fileManager.delete(buildFileForKey(key))
   }
 
   private fun setLastCacheUpdate(key: String) {
@@ -62,8 +62,7 @@ class Kache(val context: Context, val cacheDir: String) {
   }
 
   private fun getLastCacheUpdate(key: String): Long {
-    return fileManager.getFromPreferences(this.context, SETTINGS_FILE_NAME,
-        key)
+    return fileManager.getFromPreferences(this.context, SETTINGS_FILE_NAME, key)
   }
 
   private fun buildFileForKey(key: String): File {
