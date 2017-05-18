@@ -38,9 +38,9 @@ matrix:
   include: # More Emulator API levels to build in parallel
     - env: API=25
     - env: API=24
-    - env: API=23
-    - env: API=22
-    - env: API=19
+#    - env: API=23
+#    - env: API=22
+#    - env: API=19
 #  allow_failures:
 #    - env: API=23
 #    - env: API=22

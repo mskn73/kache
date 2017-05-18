@@ -9,4 +9,4 @@ import java.lang.annotation.RetentionPolicy
 
 @Target(AnnotationTarget.CLASS, AnnotationTarget.FILE)
 @Retention(RetentionPolicy.RUNTIME)
-internal annotation class KacheLife(val expiresTime: Long)
+annotation class KacheLife(val expiresTime: Long)
