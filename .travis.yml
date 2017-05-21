@@ -104,8 +104,8 @@ before_script:
 
 script:
   # Build and run all device checks
-  ./gradlew build connectedCheck
-
+  - ./gradlew build connectedCheck
+  - ./gradlew connectedAndroidTest coveralls
 after_script:
   # Show tests and lint results
   - cat ${TRAVIS_BUILD_DIR}/*/build/outputs/androidTest-results/connected/*
