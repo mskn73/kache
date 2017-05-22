@@ -103,7 +103,7 @@ before_script:
   - sleep 15
 
 script:
-  - ./gradlew build jacocoTestReport assembleAndroidTest
+  - ./gradlew build jacocoTestReportRelease assembleAndroidTest
   # Build and run all device checks
   - ./gradlew build connectedCheck
 after_script:
