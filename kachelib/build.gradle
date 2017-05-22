@@ -5,7 +5,7 @@ apply from: '../config/checkstyle/check.gradle'
 apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.mskn73'
 
-apply plugin: 'com.github.kt3k.coveralls'
+apply from: '../config/coverage/jacoco.gradle'
 
 android {
   compileSdkVersion 25
@@ -96,13 +96,4 @@ repositories {
 
 checkstyle {
   configFile file("${project.rootDir}/config/checkstyle/checkstyle.xml")
-}
-
-coveralls {
-  jacocoReportPath = "${buildDir}/reports/coverage/debug/report.xml"
-}
-
-tasks.coveralls {
-  dependsOn 'connectedAndroidTest'
-  onlyIf { System.env.'CI' }
 }
