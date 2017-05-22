@@ -90,7 +90,7 @@ install:
   # Check components status
   - sdkmanager --list || true
   # Check style
-  # - ./gradlew checkstyle
+  - ./gradlew checkstyle
 
 before_script:
   # Wait for emulator fully-booted and disable animations
@@ -103,10 +103,13 @@ before_script:
   - sleep 15
 
 script:
+  - ./gradlew build jacocoTestReport assembleAndroidTest
   # Build and run all device checks
-  ./gradlew build connectedCheck
-
+  - ./gradlew build connectedCheck
 after_script:
   # Show tests and lint results
   - cat ${TRAVIS_BUILD_DIR}/*/build/outputs/androidTest-results/connected/*
   - cat ${TRAVIS_BUILD_DIR}/*/build/reports/lint-results.xml
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
