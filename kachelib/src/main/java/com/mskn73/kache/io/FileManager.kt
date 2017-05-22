@@ -12,15 +12,10 @@ class FileManager internal constructor() {
 
   internal fun writeToFile(file: File, fileContent: String) {
     if (!file.exists()) {
-      try {
-        file.parentFile.mkdirs()
-        val writer = FileWriter(file)
-        writer.write(fileContent)
-        writer.close()
-      } catch (e: IOException) {
-        e.printStackTrace()
-      }
-
+      file.parentFile.mkdirs()
+      val writer = FileWriter(file)
+      writer.write(fileContent)
+      writer.close()
     }
   }
 
@@ -28,21 +23,16 @@ class FileManager internal constructor() {
     val fileContentBuilder = StringBuilder()
     if (file.exists()) {
       var stringLine: String
-      try {
-        val fileReader = FileReader(file)
-        val bufferedReader = BufferedReader(fileReader)
-        var finished = false
-        while (!finished) {
-          stringLine = bufferedReader.readLine()
-          finished = stringLine != null
-          fileContentBuilder.append(stringLine).append("\n")
-        }
-        bufferedReader.close()
-        fileReader.close()
-      } catch (e: IOException) {
-        e.printStackTrace()
+      val fileReader = FileReader(file)
+      val bufferedReader = BufferedReader(fileReader)
+      var finished = false
+      while (!finished) {
+        stringLine = bufferedReader.readLine()
+        finished = stringLine != null
+        fileContentBuilder.append(stringLine).append("\n")
       }
-
+      bufferedReader.close()
+      fileReader.close()
     }
     return fileContentBuilder.toString()
   }

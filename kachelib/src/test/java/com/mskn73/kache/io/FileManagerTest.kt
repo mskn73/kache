@@ -2,6 +2,7 @@ package com.mskn73.kache.io
 
 import com.mskn73.kache.AndroidTest
 import org.amshove.kluent.shouldEqualTo
+import org.amshove.kluent.shouldNotEqual
 import org.junit.After
 import org.junit.Test
 import java.io.File
@@ -65,6 +66,32 @@ class FileManagerTest : AndroidTest() {
 
     expectedContent1 shouldEqualTo false
     expectedContent2 shouldEqualTo true
+  }
+
+  @Test
+  fun shouldWriteInPreferences() {
+    val prefFilename = "preffilename"
+    val prefKey = "key1"
+    val prefVal = 3456345L
+
+    fileManager.writeToPreferences(context(), prefFilename, prefKey, prefVal)
+    val expectedContent = fileManager.getFromPreferences(context(), prefFilename, prefKey)
+
+    expectedContent shouldEqualTo prefVal
+  }
+
+  @Test
+  fun shouldGetFromPreferencesDefaultValue() {
+    val prefFilename = "preffilename"
+    val prefKey1 = "key1"
+    val prefKey2 = "key2"
+    val prefVal = 3456345L
+
+    fileManager.writeToPreferences(context(), prefFilename, prefKey1, prefVal)
+    val expectedContent = fileManager.getFromPreferences(context(), prefFilename, prefKey2)
+
+    expectedContent shouldNotEqual prefVal
+    expectedContent shouldEqualTo 0
   }
 
   private fun createDummyFile(): File {

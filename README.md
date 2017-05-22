@@ -10,16 +10,16 @@
 1. Add jitpack in your root build.gradle at the end of repositories
 ```
 allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-    }
+  repositories {
+    ...
+    maven { url 'https://jitpack.io' }
+  }
+}
 ```
 2. Add the dependency [![](https://jitpack.io/v/mskn73/kache.svg)](https://jitpack.io/#mskn73/kache)
 
 ```
 dependencies {
-    compile "com.github.mskn73:kache:${kacheVersion}"
+  compile "com.github.mskn73:kache:${kacheVersion}"
 }
 ```
