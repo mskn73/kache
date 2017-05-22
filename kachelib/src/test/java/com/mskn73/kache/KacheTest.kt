@@ -6,6 +6,7 @@ import com.mskn73.kache.Kacheable
 import com.mskn73.kache.annotations.KacheLife
 import org.amshove.kluent.Verify
 import org.amshove.kluent.called
+import org.amshove.kluent.mock
 import org.amshove.kluent.on
 import org.amshove.kluent.shouldEqualTo
 import org.amshove.kluent.that
