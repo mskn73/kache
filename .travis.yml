@@ -92,8 +92,6 @@ install:
   # Check style
   - ./gradlew checkstyle
 
-before_install:
-  - pip install --user codecov
 before_script:
   # Wait for emulator fully-booted and disable animations
   - android-wait-for-emulator
@@ -111,6 +109,3 @@ after_script:
   # Show tests and lint results
   - cat ${TRAVIS_BUILD_DIR}/*/build/outputs/androidTest-results/connected/*
   - cat ${TRAVIS_BUILD_DIR}/*/build/reports/lint-results.xml
-after_success:
-  - ./gradlew jacocoFullReport
-  - codecov

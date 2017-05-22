@@ -5,7 +5,6 @@ apply from: '../config/checkstyle/check.gradle'
 apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.mskn73'
 
-apply from: '../config/coverage/jacoco.gradle'
 
 android {
   compileSdkVersion 25
