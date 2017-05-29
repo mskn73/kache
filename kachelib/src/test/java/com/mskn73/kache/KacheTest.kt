@@ -88,7 +88,7 @@ class KacheTest : AndroidTest() {
 
     kache.put(dummy)
     Thread.sleep(1000)
-    val expectedContent = kache.isExpired(key, dummy)
+    val expectedContent = kache.isExpired(key, dummy.javaClass)
 
     expectedContent shouldEqualTo false
   }
@@ -100,7 +100,7 @@ class KacheTest : AndroidTest() {
 
     kache.put(dummy)
     Thread.sleep(1000)
-    val expectedContent = kache.isExpired(key, dummy)
+    val expectedContent = kache.isExpired(key, dummy.javaClass)
 
     assertFails({ Verify on kache that kache.evict(key) was called })
     expectedContent shouldEqualTo false

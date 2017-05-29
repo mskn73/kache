@@ -39,10 +39,10 @@ class Kache(val context: Context, val cacheDir: String) {
 
   fun isCached(key: String) = fileManager.exists(buildFileForKey(key))
 
-  fun isExpired(key: String, myKacheable: Kacheable): Boolean {
+  fun isExpired(key: String, clazz: Class<*>): Boolean {
     val currentTime = System.currentTimeMillis()
     val lastUpdateTime = getLastCacheUpdate(key)
-    val expirationTime = kacheableProcessor.getExpiresTime(myKacheable.javaClass)
+    val expirationTime = kacheableProcessor.getExpiresTime(clazz)
 
     val expired = currentTime - lastUpdateTime > expirationTime
 
