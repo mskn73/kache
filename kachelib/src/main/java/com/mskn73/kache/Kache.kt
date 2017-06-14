@@ -17,6 +17,7 @@ import kotlin.system.measureTimeMillis
 
 class Kache(val context: Context, val cacheDir: String) {
   private val SETTINGS_FILE_NAME = "com.mskn73.kache.SETTINGS"
+  private val KACHE_DIR = "kache"
 
   val fileManager: FileManager = FileManager()
   val serializer: Serializer = Serializer()
@@ -57,6 +58,10 @@ class Kache(val context: Context, val cacheDir: String) {
     fileManager.delete(buildFileForKey(key))
   }
 
+  fun evictAll() {
+    fileManager.delete(buildFileForKey("FAKE").parentFile)
+  }
+
   private fun setLastCacheUpdate(key: String) {
     fileManager.writeToPreferences(context, SETTINGS_FILE_NAME, key, System.currentTimeMillis())
   }
@@ -66,6 +71,6 @@ class Kache(val context: Context, val cacheDir: String) {
   }
 
   private fun buildFileForKey(key: String): File {
-    return File(cacheDir + File.separator + key)
+    return File(cacheDir + File.separator + KACHE_DIR + File.separator + key)
   }
 }
