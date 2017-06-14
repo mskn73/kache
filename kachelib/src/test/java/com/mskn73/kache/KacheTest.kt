@@ -118,6 +118,21 @@ class KacheTest : AndroidTest() {
     expectedContent shouldEqualTo false
   }
 
+  @Test
+  fun shouldBeEvictAll() {
+    val key1 = "key1"
+    val dummy1 = DummyObject(key1, "content")
+    val key2 = "key2"
+    val dummy2 = DummyObject(key2, "content")
+
+    kache.put(dummy1)
+    kache.put(dummy2)
+    kache.evictAll()
+    val expectedContent = kache.isCached(key1) || kache.isCached(key2)
+
+    expectedContent shouldEqualTo false
+  }
+
   class DummyObject(override val key: String, val data: String) : Kacheable
 
   @KacheLife(expiresTime = 1)

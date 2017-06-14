@@ -53,6 +53,12 @@ class FileManager internal constructor() {
   }
 
   internal fun delete(file: File): Boolean {
+    if (file.isDirectory()) {
+      val children = file.list()
+      for (i in children.indices) {
+        File(file, children[i]).delete()
+      }
+    }
     file.delete()
     val result = exists(file)
     return result
